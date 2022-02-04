@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="#F8F9FA"
   tools:context=".MainActivity">
 
   <com.freddydev.kidsdrawing.DrawingView
@@ -12,9 +13,22 @@
     android:layout_height="0dp"
     android:layout_margin="5dp"
     android:background="@drawable/bg_drawing_view_layout"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/brush"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageButton
+    android:id="@+id/brush"
+    android:layout_width="50dp"
+    android:layout_margin="5dp"
+    android:layout_height="50dp"
+    android:scaleType="fitXY"
+    android:src="@drawable/ic_brush"
+    android:contentDescription="brush image"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
