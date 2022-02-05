@@ -11,7 +11,7 @@
         <entry key="app/src/main/res/drawable/pallet_normal.xml" value="0.2135" />
         <entry key="app/src/main/res/drawable/pallet_pressed.xml" value="0.2135" />
         <entry key="app/src/main/res/drawable/small.xml" value="0.305" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_brush_size.xml" value="0.25" />
         <entry key="app/src/main/res/menu/more_menu.xml" value="0.31666666666666665" />
       </map>

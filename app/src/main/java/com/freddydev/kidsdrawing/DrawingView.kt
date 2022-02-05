@@ -15,7 +15,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
   private var mCanvasBitmap: Bitmap? = null
   private var mCanvasPaint: Paint? = null
   private var mBrushSize: Float = 0.toFloat()
-  private var defaultColor = Color.BLACK
+  private var color = Color.BLACK
   private var mCanvas: Canvas? = null
   private var mPaint = ArrayList<CustomPath>()
 
@@ -24,9 +24,9 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
   }
 
   private fun setUpDrawing() {
-    mDrawPath = CustomPath(defaultColor, mBrushSize)
+    mDrawPath = CustomPath(color, mBrushSize)
     mDrawPaint = Paint()
-    mDrawPaint!!.color = defaultColor
+    mDrawPaint!!.color = color
     mDrawPaint!!.style = Paint.Style.STROKE
     mDrawPaint!!.strokeJoin = Paint.Join.ROUND
     mDrawPaint!!.strokeCap = Paint.Cap.ROUND
@@ -64,7 +64,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
     when (event?.action) {
       MotionEvent.ACTION_DOWN -> {
-        mDrawPath!!.color = defaultColor
+        mDrawPath!!.color = color
         mDrawPath!!.brushThickness = mBrushSize
 
         mDrawPath!!.reset()
@@ -79,7 +79,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
       }
       MotionEvent.ACTION_UP -> {
         mPaint.add(mDrawPath!!)
-        mDrawPath = CustomPath(defaultColor, mBrushSize)
+        mDrawPath = CustomPath(color, mBrushSize)
       }
       else -> return false
     }
@@ -92,6 +92,11 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     mBrushSize =
       TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, resources.displayMetrics)
     mDrawPaint!!.strokeWidth = mBrushSize
+  }
+
+  fun setColor(newColor: String) {
+    color = Color.parseColor(newColor)
+    mDrawPath!!.color = color
   }
 
   internal inner class CustomPath(var color: Int, var brushThickness: Float) :

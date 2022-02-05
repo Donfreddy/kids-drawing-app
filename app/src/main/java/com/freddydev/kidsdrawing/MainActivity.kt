@@ -7,9 +7,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.get
+import yuku.ambilwarna.AmbilWarnaDialog
+import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 
 
 /**
@@ -21,7 +27,9 @@ class MainActivity : AppCompatActivity() {
   private lateinit var brushBtn: ImageButton
   private lateinit var smallBtn: ImageButton
   private lateinit var mediumBtn: ImageButton
+  private lateinit var llPaintColors: LinearLayout
   private lateinit var largeBtn: ImageButton
+  private var mImageButtonCurrentPaint: ImageButton? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -31,10 +39,22 @@ class MainActivity : AppCompatActivity() {
 
     drawingView = findViewById(R.id.drawing_view)
     brushBtn = findViewById(R.id.brush)
+    llPaintColors = findViewById(R.id.ll_paint_colors)
+    mImageButtonCurrentPaint = llPaintColors[1] as ImageButton
+
+    // set Image drawable to pallet pressed
+    mImageButtonCurrentPaint!!.setImageDrawable(
+      ContextCompat.getDrawable(
+        this,
+        R.drawable.pallet_pressed
+      )
+    )
 
     drawingView.setSizeForBrush(20.toFloat())
     brushBtn.setOnClickListener {
       showBrushDialog()
+
+      // openColorPickerDialogue();
     }
   }
 
@@ -85,5 +105,40 @@ class MainActivity : AppCompatActivity() {
       drawingView.setSizeForBrush(30.toFloat())
       brushDialog.dismiss()
     }
+  }
+
+  fun paintClicked(view: View) {
+    if (view !== mImageButtonCurrentPaint) {
+      val imageButton = view as ImageButton
+      val colorTag = imageButton.tag.toString()
+      drawingView.setColor(colorTag)
+      imageButton.setImageDrawable(
+        ContextCompat.getDrawable(
+          this,
+          R.drawable.pallet_pressed
+        )
+      )
+      mImageButtonCurrentPaint!!.setImageDrawable(
+        ContextCompat.getDrawable(
+          this,
+          R.drawable.pallet_normal
+        )
+      )
+      mImageButtonCurrentPaint = view
+    }
+  }
+
+  // https://www.geeksforgeeks.org/how-to-create-a-basic-color-picker-tool-in-android
+  private fun openColorPickerDialogue() {
+    var defaultColor = Color.parseColor(mImageButtonCurrentPaint?.tag.toString())
+    val colorPickerDialogue = AmbilWarnaDialog(this, defaultColor,
+      object : OnAmbilWarnaListener {
+        override fun onCancel(dialog: AmbilWarnaDialog) {}
+
+        override fun onOk(dialog: AmbilWarnaDialog, color: Int) {
+          defaultColor = color
+        }
+      })
+    colorPickerDialogue.show()
   }
 }

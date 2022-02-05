@@ -8,4 +8,18 @@
   <color name="black">#FF000000</color>
   <color name="white">#FFFFFFFF</color>
   <color name="dark">#FF005F73</color>
+
+  <!--  Paint Colors-->
+  <color name="skin">#ffcc99</color>
+  <color name="red">#d62828</color>
+  <color name="green">#00b327</color>
+  <color name="blue">#0000ff</color>
+  <color name="yellow">#fee440</color>
+  <color name="lollipop">#35a79c</color>
+  <color name="random">#A349B1</color>
+
+  <color name="mahogany">#CA6702</color>
+  <color name="blueSapphire">#7678ed</color>
+  <color name="greenDark">#6a9325</color>
+  <color name="darkBlue">#0d3b66</color>
 </resources>
