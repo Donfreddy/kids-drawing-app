@@ -3,6 +3,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.freddydev.kidsdrawing">
 
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -12,8 +14,8 @@
     android:theme="@style/Theme.KidsDrawing">
     <activity
       android:name=".MainActivity"
-      android:screenOrientation="portrait"
       android:exported="true"
+      android:screenOrientation="portrait"
       tools:ignore="LockedOrientationActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
